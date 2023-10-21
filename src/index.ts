@@ -3,10 +3,13 @@ import Router from "./router";
 import { cartService } from "./services/cart.service";
 import { userService } from "./services/user.service";
 
-new Router();
-cartService.init();
-userService.init();
 
-setTimeout(() => {
+async function initializeApp() {
+  await userService.init(); 
+  await cartService.init(); 
+  const router = new Router(); 
+  router.route();
   document.body.classList.add("is__ready");
-}, 250);
+}
+
+initializeApp();
